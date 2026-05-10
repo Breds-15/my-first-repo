@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NEBULA MEDIA // Smart Filter</title>
+    <style>
+        :root {
+            --bg: #030508;
+            --accent: #00f2ff;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: white; 
+            font-family: 'Inter', -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%; height: 75px;
+            padding: 0 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(3, 5, 8, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-weight: 900; letter-spacing: 4px; color: #fff; font-size: 1.1rem; }
+        
+        .filter-tabs { display: flex; gap: 10px; }
+        
+        .tab {
+            padding: 8px 15px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .tab.active {
+            background: var(--accent);
+            color: black;
+            border-color: var(--accent);
+        }
+
+        /* --- CONTENEDOR --- */
+        main { padding: 100px 5% 50px; }
+
+        /* Clase para ocultar secciones */
+        .hidden { display: none !important; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- TARJETAS --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .media-container { position: relative; aspect-ratio: 16/9; }
+        img, video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .card-info { padding: 15px; }
+        .tag { font-size: 9px; font-weight: 900; color: var(--accent); text-transform: uppercase; }
+        .title { font-size: 0.9rem; font-weight: 600; margin-top: 4px; }
+
+        .play-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 800;
+        }
+
+        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" onclick="location.reload()">NEBULA</div>
+        <div class="filter-tabs">
+            <div class="tab active" onclick="showSection('fotos', this)">Galería</div>
+            <div class="tab" onclick="showSection('videos', this)">Cinema</div>
+        </div>
+    </nav>
+
+    <main>
+        <div id="fotos" class="grid"></div>
+
+        <div id="videos" class="grid hidden"></div>
+    </main>
+
+    <script>
+        const photos = [
+            { t: "Cumbres Árticas", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800" },
+            { t: "Arquitectura Futurista", url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800" },
+            { t: "Bosque de Niebla", url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800" },
+            { t: "Desierto Infinito", url: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=800" },
+            { t: "Luces de Tokio", url: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=800" },
+            { t: "Lago Cristalino", url: "https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=800" },
+            { t: "Minimalismo Urbano", url: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=800" },
+            { t: "Atardecer en la Costa", url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" },
+            { t: "Vía Láctea", url: "https://images.unsplash.com/photo-1444703686981-a3abb997b724?w=800" },
+            { t: "Selva Profunda", url: "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800" }
+        ];
+
+        const videos = [
+            { t: "Oleaje Pacífico", url: "https://assets.mixkit.co/videos/preview/mixkit-underwater-ocean-waves-1563-large.mp4" },
+            { t: "Nubes Atardecer", url: "https://assets.mixkit.co/videos/preview/mixkit-clouds-moving-fast-during-sunset-1214-large.mp4" },
+            { t: "Cascada Montaña", url: "https://assets.mixkit.co/videos/preview/mixkit-powerful-waterfall-in-a-mountain-canyon-1215-large.mp4" },
+            { t: "Tráfico Nocturno", url: "https://assets.mixkit.co/videos/preview/mixkit-traffic-at-night-in-a-big-city-1191-large.mp4" }
+        ];
+
+        // Renderizado
+        const pGrid = document.getElementById('fotos');
+        photos.forEach(item => {
+            pGrid.innerHTML += `<div class="card"><div class="media-container"><img src="${item.url}" loading="lazy"></div><div class="card-info"><div class="tag">Photo</div><div class="title">${item.t}</div></div></div>`;
+        });
+
+        const vGrid = document.getElementById('videos');
+        videos.forEach(item => {
+            vGrid.innerHTML += `<div class="card" onclick="this.querySelector('video').paused ? this.querySelector('video').play() : this.querySelector('video').pause()"><div class="media-container"><div class="play-overlay">PLAY</div><video loop muted playsinline><source src="${item.url}"></video></div><div class="card-info"><div class="tag">Video</div><div class="title">${item.t}</div></div></div>`;
+        });
+
+        // Lógica de Filtrado
+        function showSection(id, btn) {
+            // Ocultar todas las secciones
+            document.getElementById('fotos').classList.add('hidden');
+            document.getElementById('videos').classList.add('hidden');
+            
+            // Mostrar la elegida
+            document.getElementById(id).classList.remove('hidden');
+
+            // Actualizar botones
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Resetear videos al cambiar
+            document.querySelectorAll('video').forEach(v => v.pause());
+        }
+    </script>
+</body>
+</html>
