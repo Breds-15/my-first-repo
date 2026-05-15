@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Brayan Eduardo Risco Sosa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="cv-container">
+        <header class="card header-card">
+            <img src="Perfil-cv.jpeg" alt="Foto de Perfil" class="cv-photo">
+    
+    <h1>BRAYAN EDUARDO RISCO SOSA</h1>
+    <p class="tagline">Estudiante de Ciberseguridad (SENATI) | Especialista en Redes & Gestión Operativa</p>
+            <div class="contact-strip">
+                <span>📍 Piura, Perú</span>
+                <span>📧 <a href="mailto:brianriscososa15@gmail.com">brianriscososa15@gmail.com</a></span>
+                <span>📞 +51 987 654 321</span>
+                <span>🔗 <a href="https://www.linkedin.com/in/tu-perfil" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
+            </div>
+        </header>
+
+        <section class="card">
+            <h2>Perfil Profesional</h2>
+            <p class="long-profile">
+                Estudiante de 3er semestre en Ciberseguridad en SENATI con sólida formación técnica en arquitectura de redes (CCNA 1, 2 y 3) y administración de sistemas operativos Windows y Linux (Red Hat). Mi perfil combina la agilidad técnica del sector IT con una disciplina operativa rigurosa forjada en el sector logístico de consumo masivo.
+                <br><br>
+                Poseo una alta capacidad para el cumplimiento de estándares de seguridad, gestión de activos y resolución de incidencias bajo presión. Enfocado actualmente en profundizar conocimientos en defensa de redes y desarrollo web seguro.
+            </p>
+        </section>
+
+      <section class="card">
+        <h2>Formación Técnica y Certificaciones</h2>
+        <div class="photo-grid">
+            <div class="cert-photo-card">
+                <img src="Computer Hardware Basics.jpg" alt="Certificado CCNA" class="clickable-cert">
+                <p> Concepto básico de Hardware</p>
+            </div>
+            <div class="cert-photo-card">
+                <img src="Concepto basico de redes.jpg" alt="Certificado Red Hat" class="clickable-cert">
+                <p>Concepto básico de redes</p>
+            </div>
+            <div class="cert-photo-card">
+                <img src="IT Essentials 7.jpg" alt="Certificado Web" class="clickable-cert">
+                <p>IT Essentials</p>
+            </div>
+        </div>
+    </section>
+    
+    <div id="certModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="imgAmpliada">
+    </div>
+
+        <section class="card">
+            <h2>Experiencia Laboral</h2>
+
+            <div class="job-detail">
+                <div class="job-header">
+                    <h3>Operador de Equipos de Acarreo</h3>
+                    <span class="date">Jun 2023 - Actualidad</span>
+                </div>
+                <span class="company">Adecco Industrial y Logística</span>
+                <ul class="task-list">
+                    <li>Operación técnica de equipos pesados y despacho de productos de consumo masivo.</li>
+                    <li>Ejecución de Check-list de seguridad y mantenimiento preventivo de equipos.</li>
+                    <li>Gestión física de inventarios asegurando rotación estratégica (FIFO/FEFO).</li>
+                </ul>
+            </div>
+
+            <div class="job-detail">
+                <div class="job-header">
+                    <h3>Asesor Técnico Móvil (Help Desk N1)</h3>
+                    <span class="date">Ene 2020 - Abr 2023</span>
+                </div>
+                <span class="company">Comdata Group</span>
+                <ul class="task-list">
+                    <li>Diagnóstico y resolución de incidencias técnicas en dispositivos móviles.</li>
+                    <li>Soporte remoto orientado a la configuración de sistemas y aplicaciones.</li>
+                    <li>Gestión de tickets en plataformas CRM para seguimiento de casos.</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="cta-container">
+            <button id="downloadBtn" class="btn-minimal">
+                <span class="btn-icon">📄</span> Imprimir / Guardar como PDF
+            </button>
+        </div>
+
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 | Perfil Profesional IT - Ciberseguridad SENATI</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

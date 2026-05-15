@@ -1,0 +1,171 @@
+:root {
+    --bg: #0b0f1a;
+    --card: #161e2d;
+    --accent: #00d2ff;
+    --text-dim: #94a3b8;
+    --text-bright: #f1f5f9;
+    --white: #ffffff;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-dim);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.cv-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.header-card {
+    text-align: center;
+    border-top: 4px solid var(--accent);
+}
+
+h1 { color: var(--text-bright); font-size: 2.2rem; margin: 0 0 10px 0; }
+h2 { color: var(--accent); font-size: 1.3rem; margin-bottom: 15px; border-left: 4px solid var(--accent); padding-left: 15px; }
+
+.tagline { color: var(--accent); font-weight: 600; margin-bottom: 15px; }
+
+.contact-strip { font-size: 0.9rem; }
+.contact-strip span { margin: 0 10px; }
+.contact-strip a { color: var(--accent); text-decoration: none; font-weight: 500; transition: 0.3s; }
+.contact-strip a:hover { color: var(--white); text-decoration: underline; }
+
+.long-profile { color: var(--text-bright); text-align: justify; }
+
+/* Experiencia Laboral */
+.job-detail { margin-bottom: 25px; }
+.job-header { display: flex; justify-content: space-between; align-items: baseline; }
+.job-header h3 { color: var(--text-bright); font-size: 1.1rem; margin: 0; }
+.date { color: var(--accent); font-size: 0.85rem; font-weight: bold; }
+.company { color: var(--accent); font-weight: bold; font-size: 0.95rem; display: block; margin: 5px 0 10px 0; }
+.task-list { padding-left: 20px; margin: 0; }
+.task-list li { font-size: 0.9rem; margin-bottom: 5px; }
+
+/* Certificaciones */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.cert-photo-card { text-align: center; }
+.cert-photo-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #2a3447;
+    transition: 0.3s;
+}
+.cert-photo-card p { margin-top: 10px; font-size: 0.85rem; color: var(--text-bright); font-weight: 500; }
+
+/* Botón */
+.cta-container { display: flex; justify-content: center; padding: 20px 0 40px 0; }
+.btn-minimal {
+    background: transparent;
+    color: var(--accent);
+    padding: 12px 30px;
+    border: 2px solid var(--accent);
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+.btn-minimal:hover { background: var(--accent); color: var(--bg); transform: translateY(-3px); }
+
+.main-footer { text-align: center; font-size: 0.8rem; opacity: 0.6; padding-bottom: 20px; }
+
+/* --- ESTILOS DE IMPRESIÓN (PDF) --- */
+@media print {
+    body { background: white !important; color: black !important; padding: 0; }
+    .card { background: white !important; border: 1px solid #eee !important; box-shadow: none !important; color: black !important; }
+    .cta-container, .main-footer { display: none !important; }
+    h1, h2, .company, .date { color: #005f73 !important; }
+    .long-profile, .job-header h3, .task-list li, .cert-photo-card p { color: #333 !important; }
+    .contact-strip a { color: #005f73 !important; }
+}
+
+/* Estilos para el efecto de ampliar imagen (Modal) */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.9); 
+    cursor: zoom-out;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    margin-top: 5%;
+    border: 3px solid var(--accent);
+    border-radius: 10px;
+    animation: zoom 0.3s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.clickable-cert {
+    cursor: zoom-in;
+    transition: 0.3s;
+}
+
+.clickable-cert:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+/* Estilos para la foto de perfil */
+.cv-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* La hace circular */
+    object-fit: cover;
+    border: 3px solid var(--accent); /* Usa tu color celeste actual */
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Forzar alineación vertical en el header */
+.header-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
